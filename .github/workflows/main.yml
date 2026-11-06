@@ -17,17 +17,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: gradle
 
-      - name: Grant Execute Permission for Gradlew
+      - name: Make Gradlew Executable
         run: chmod +x gradlew
 
-      - name: Build APK
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Build APK with Gradle Wrapper
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
